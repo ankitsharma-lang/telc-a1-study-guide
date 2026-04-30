@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TELC Deutsch A1 — Ankit's Study Guide</title>
+<style>
+/* ── Reset & Base ─────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: #f5f5f7;
+  color: #1d1d1f;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Tokens ───────────────────────────────────── */
+:root {
+  --accent:   #0071e3;
+  --accent-h: #005bbf;
+  --green:    #34c759;
+  --red:      #ff3b30;
+  --orange:   #ff9500;
+  --purple:   #af52de;
+  --gray-1:   #1d1d1f;
+  --gray-2:   #6e6e73;
+  --gray-3:   #86868b;
+  --gray-4:   #d2d2d7;
+  --gray-5:   #f5f5f7;
+  --white:    #ffffff;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05);
+  --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 12px 32px rgba(0,0,0,0.07);
+  --transition: 0.2s ease;
+}
+
+/* ── Header ───────────────────────────────────── */
+.site-header {
+  background: var(--gray-1);
+  color: var(--white);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+.site-header .eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+.site-header h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 12px;
+}
+.site-header .subtitle {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.65);
+  max-width: 520px;
+  margin: 0 auto 24px;
+}
+.badge-row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+.badge {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.9);
+}
+.badge.accent { background: var(--accent); color: #fff; }
+
+/* ── Nav ──────────────────────────────────────── */
+.sticky-nav {
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  background: rgba(29,29,31,0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+}
+.sticky-nav::-webkit-scrollbar { display: none; }
+.sticky-nav a {
+  display: inline-block;
+  color: rgba(255,255,255,0.65);
+  text-decoration: none;
+  padding: 13px 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+.sticky-nav a:hover { color: var(--white); }
+.sticky-nav a.active { color: var(--accent); }
+
+/* ── Layout ───────────────────────────────────── */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px 80px; }
+.section-group { padding-top: 48px; }
+.section-group + .section-group { margin-top: 8px; }
+
+/* ── Section Header ───────────────────────────── */
+.section-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gray-3);
+  margin-bottom: 6px;
+}
+.section-title {
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--gray-1);
+  margin-bottom: 4px;
+}
+.section-desc {
+  font-size: 0.92rem;
+  color: var(--gray-2);
+  margin-bottom: 24px;
+  max-width: 620px;
+}
+
+/* ── Card ─────────────────────────────────────── */
+.card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.card:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.card + .card { margin-top: 16px; }
+
+/* ── Grid ─────────────────────────────────────── */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+
+/* ── Exam Overview Cards ──────────────────────── */
+.exam-stat-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+.exam-stat-card .stat-icon { font-size: 1.8rem; margin-bottom: 8px; }
+.exam-stat-card .stat-value { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+.exam-stat-card .stat-label { font-size: 0.8rem; color: var(--gray-2); margin-top: 2px; }
+
+.exam-section-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  border-left: 3px solid var(--accent);
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: box-shadow var(--transition);
+}
+.exam-section-card:hover { box-shadow: var(--shadow-md); }
+.exam-section-card .sec-icon { font-size: 1.6rem; flex-shrink: 0; }
+.exam-section-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 3px; }
+.exam-section-card .sec-meta { font-size: 0.78rem; color: var(--gray-2); margin-bottom: 6px; }
+.exam-section-card p { font-size: 0.87rem; color: var(--gray-2); }
+
+/* ── Grammar ──────────────────────────────────── */
+.grammar-card { background: var(--white); border-radius: var(--radius-md); padding: 24px; box-shadow: var(--shadow-sm); margin-bottom: 16px; }
+.grammar-card h4 { font-size: 1rem; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+.grammar-card h4 .tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+  text-transform: uppercase; padding: 2px 8px; border-radius: 20px;
+  background: #e8f4fd; color: var(--accent);
+}
+.case-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.case-table th {
+  background: var(--gray-5); color: var(--gray-2); font-weight: 600;
+  padding: 8px 12px; text-align: left; font-size: 0.75rem; letter-spacing: 0.04em;
+}
+.case-table td { padding: 8px 12px; border-top: 1px solid rgba(0,0,0,0.05); }
+.case-table tr:hover td { background: var(--gray-5); }
+.m { color: var(--accent); font-weight: 600; }
+.f { color: #e91e8c; font-weight: 600; }
+.n { color: var(--orange); font-weight: 600; }
+.pl { color: var(--green); font-weight: 600; }
+
+/* ── Examples ─────────────────────────────────── */
+.example-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 10px 14px; border-radius: var(--radius-sm);
+  background: var(--gray-5); margin-bottom: 8px; font-size: 0.88rem;
+}
+.example-row .de { font-weight: 600; color: var(--gray-1); flex: 1; }
+.example-row .en { color: var(--gray-2); flex: 1; }
+.example-row.wrong { background: #fff2f2; }
+.example-row.wrong .de { color: var(--red); text-decoration: line-through; }
+.example-row.right { background: #f0faf3; }
+.example-row.right .de { color: #1a7a3a; }
+.correction-note { font-size: 0.78rem; color: var(--red); margin-top: 4px; }
+
+/* ── Vocabulary ───────────────────────────────── */
+.vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 10px; }
+.vocab-chip {
+  background: var(--white); border-radius: var(--radius-sm);
+  padding: 12px 14px; box-shadow: var(--shadow-sm);
+  cursor: pointer; transition: all var(--transition); user-select: none;
+}
+.vocab-chip:hover { box-shadow: var(--shadow-md); transform: translateY(-1px); }
+.vocab-chip .article { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.vocab-chip .article.der { color: var(--accent); }
+.vocab-chip .article.die { color: #e91e8c; }
+.vocab-chip .article.das { color: var(--orange); }
+.vocab-chip .article.none { color: var(--gray-3); }
+.vocab-chip .word { font-size: 0.97rem; font-weight: 600; margin: 2px 0; }
+.vocab-chip .translation { font-size: 0.8rem; color: var(--gray-2); }
+.vocab-chip .example-hint { font-size: 0.75rem; color: var(--gray-3); margin-top: 4px; font-style: italic; display: none; }
+.vocab-chip.revealed .example-hint { display: block; }
+
+/* ── Writing ──────────────────────────────────── */
+.writing-filter { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.filter-btn {
+  padding: 6px 16px; border-radius: 20px; border: 1.5px solid var(--gray-4);
+  background: transparent; cursor: pointer; font-size: 0.82rem; font-weight: 500;
+  color: var(--gray-2); transition: all var(--transition);
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--accent); border-color: var(--accent); color: var(--white);
+}
+.writing-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 24px; box-shadow: var(--shadow-sm);
+  margin-bottom: 14px; display: none;
+}
+.writing-card.visible { display: block; }
+.writing-card.visible { animation: fadeIn 0.25s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.writing-card .wc-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
+.writing-card .wc-cat {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.07em; text-transform: uppercase;
+  padding: 3px 10px; border-radius: 20px; background: #e8f4fd; color: var(--accent);
+}
+.writing-card h4 { font-size: 0.97rem; font-weight: 600; color: var(--gray-1); }
+.letter-body {
+  background: var(--gray-5); border-radius: var(--radius-sm);
+  padding: 20px; font-size: 0.88rem; line-height: 1.8;
+  border-left: 3px solid var(--accent);
+}
+.letter-body .greeting { font-weight: 600; }
+.letter-body .closing { font-weight: 600; margin-top: 12px; }
+.key-phrases { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 14px; }
+.phrase-tag {
+  font-size: 0.77rem; padding: 3px 10px; border-radius: 20px;
+  background: #f0faf3; color: #1a7a3a; font-weight: 500;
+}
+
+/* ── Speaking ─────────────────────────────────── */
+.speaking-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 20px 24px; box-shadow: var(--shadow-sm); margin-bottom: 12px;
+  cursor: pointer; transition: box-shadow var(--transition);
+}
+.speaking-card:hover { box-shadow: var(--shadow-md); }
+.speaking-card .q-label {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--purple); margin-bottom: 6px;
+}
+.speaking-card .question { font-size: 1rem; font-weight: 600; color: var(--gray-1); }
+.speaking-card .answer {
+  font-size: 0.88rem; color: var(--gray-2); margin-top: 12px;
+  padding-top: 12px; border-top: 1px solid var(--gray-4);
+  display: none; line-height: 1.7;
+}
+.speaking-card.open .answer { display: block; }
+.speaking-card .toggle-icon { float: right; color: var(--gray-3); font-size: 0.8rem; transition: transform var(--transition); }
+.speaking-card.open .toggle-icon { transform: rotate(180deg); }
+
+/* ── Corrections ──────────────────────────────── */
+.correction-card {
+  background: var(--white); border-radius: var(--radius-md);
+  padding: 20px 24px; box-shadow: var(--shadow-sm); margin-bottom: 12px;
+}
+.correction-card .wrong-line { color: var(--red); text-decoration: line-through; font-size: 0.9rem; }
+.correction-card .right-line { color: #1a7a3a; font-size: 0.9rem; font-weight: 600; margin-top: 4px; }
+.correction-card .reason { font-size: 0.8rem; color: var(--gray-2); margin-top: 6px; }
+
+/* ── Content Model Section ────────────────────── */
+.cm-card {
+  background: var(--gray-1); color: var(--white);
+  border-radius: var(--radius-md); padding: 24px; margin-bottom: 14px;
+}
+.cm-card h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 4px; }
+.cm-card .cm-id {
+  font-family: "SF Mono", "Fira Code", monospace; font-size: 0.75rem;
+  color: var(--accent); margin-bottom: 14px;
+}
+.field-row { display: flex; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 0.82rem; }
+.field-row:last-child { border-bottom: none; }
+.field-row .fn { font-family: "SF Mono", "Fira Code", monospace; color: #f5f5f7; flex: 1.2; }
+.field-row .ft { color: rgba(255,255,255,0.4); flex: 0.8; font-size: 0.75rem; }
+.field-row .fh { color: rgba(255,255,255,0.55); flex: 2; font-size: 0.78rem; }
+.field-row .req { color: var(--red); font-size: 0.65rem; font-weight: 700; letter-spacing: 0.05em; }
+
+/* ── Checklist ────────────────────────────────── */
+.checklist { list-style: none; }
+.checklist li { display: flex; align-items: flex-start; gap: 10px; padding: 8px 0; font-size: 0.88rem; color: var(--gray-2); border-bottom: 1px solid var(--gray-4); }
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before { content: "✓"; color: var(--green); font-weight: 700; font-size: 0.85rem; flex-shrink: 0; margin-top: 1px; }
+
+/* ── Progress Bar ─────────────────────────────── */
+.progress-wrap { background: var(--gray-4); border-radius: 4px; height: 6px; overflow: hidden; margin: 8px 0; }
+.progress-fill { height: 100%; border-radius: 4px; background: var(--accent); transition: width 0.5s ease; }
+
+/* ── Tabs ─────────────────────────────────────── */
+.tab-bar { display: flex; gap: 0; border-bottom: 1.5px solid var(--gray-4); margin-bottom: 20px; overflow-x: auto; }
+.tab-btn {
+  padding: 10px 20px; border: none; background: transparent; cursor: pointer;
+  font-size: 0.85rem; font-weight: 500; color: var(--gray-2);
+  border-bottom: 2px solid transparent; transition: all var(--transition); margin-bottom: -1.5px;
+  white-space: nowrap;
+}
+.tab-btn:hover { color: var(--gray-1); }
+.tab-btn.active { color: var(--accent); border-bottom-color: var(--accent); }
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ── Divider ──────────────────────────────────── */
+.divider { height: 1px; background: var(--gray-4); margin: 32px 0; }
+
+/* ── Tip Box ──────────────────────────────────── */
+.tip-box {
+  background: #e8f4fd; border-radius: var(--radius-sm);
+  padding: 14px 18px; font-size: 0.85rem; color: #004f9e;
+  display: flex; gap: 10px; align-items: flex-start; margin-bottom: 16px;
+}
+.tip-box .tip-icon { flex-shrink: 0; font-size: 1rem; }
+
+/* ── Footer ───────────────────────────────────── */
+footer {
+  background: var(--gray-1); color: rgba(255,255,255,0.45);
+  text-align: center; padding: 24px; font-size: 0.8rem;
+}
+
+/* ── Animations ───────────────────────────────── */
+@keyframes slideIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+.section-group { animation: slideIn 0.4s ease both; }
+
+/* ── Print ────────────────────────────────────── */
+@media print {
+  body { margin: 0; padding: 0.4in 0.6in; background: #fff; print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .sticky-nav, .writing-filter, .tab-bar, button, .filter-btn { display: none !important; }
+  .container { max-width: 100% !important; }
+  .card, .grammar-card, .writing-card, .speaking-card, .correction-card { break-inside: avoid; box-shadow: none !important; border: 1px solid rgba(0,0,0,0.08); }
+  .writing-card { display: block !important; }
+  .speaking-card .answer { display: block !important; }
+  .tab-panel { display: block !important; }
+}
+
+/* ── Responsive ───────────────────────────────── */
+@media screen and (max-width: 640px) {
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; }
+  .section-title { font-size: 1.3rem; }
+  .letter-body { padding: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════
+     CONTENTFUL CONTENT MODEL MAPPING
+     ───────────────────────────────────────────────────────
+     Content Type: studyPage (Assembly)
+     Entry ID:     telcA1StudyGuide
+     Fields used:  title, subtitle, targetLevel, examProvider,
+                   examOverview, grammarRules, vocabularySets,
+                   writingTemplates, speakingPrompts, corrections
+     ═══════════════════════════════════════════════════════ -->
+
+<script>
+// ── Contentful CDA-Mirrored Data Layer ─────────────────────────────────────
+// This object mirrors the structure Contentful's Content Delivery API returns.
+// Field IDs follow camelCase convention. Every content type includes internalName.
+// When connecting to real Contentful: fetch entries and replace this object.
+// ──────────────────────────────────────────────────────────────────────────
+
+const CONTENTFUL_DATA = {
+
+  // ── Content Type: examOverview ───────────────
+  examOverview: {
+    sys: { contentType: { sys: { id: "examOverview" } }, id: "telcA1Overview" },
+    fields: {
+      internalName:  "TELC A1 Overview",
+      title:         "TELC Deutsch A1",
+      targetLevel:   "A1",
+      examProvider:  "TELC",
+      totalPoints:   100,
+      passingScore:  60,
+      stats: [
+        { icon: "🎯", value: "4", label: "Exam Parts" },
+        { icon: "⏱️", value: "80", label: "Total Minutes" },
+        { icon: "✅", value: "60%", label: "Pass Mark" },
+        { icon: "📊", value: "25%", label: "Each Part" }
+      ]
+    }
+  },
+
+  // ── Content Type: examSection ────────────────
+  examSections: [
+    {
+      sys: { contentType: { sys: { id: "examSection" } }, id: "sectionHoeren" },
+      fields: {
+        internalName:    "Hören Section",
+        sectionName:     "Hören",
+        icon:            "🎧",
+        durationMinutes: 20,
+        maxPoints:       25,
+        accentColor:     "#0071e3",
+        description:     "Listen to short conversations, messages and announcements. 3 parts with true/false and multiple choice tasks.",
+        tips: ["Listen twice — first for the gist, second for detail", "Read the questions before the audio plays", "Watch for keywords: Ort, Zeit, Person"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "examSection" } }, id: "sectionLesen" },
+      fields: {
+        internalName:    "Lesen/Schreiben Section",
+        sectionName:     "Lesen & Schreiben",
+        icon:            "✍️",
+        durationMinutes: 45,
+        maxPoints:       25,
+        accentColor:     "#34c759",
+        description:     "Read short texts, fill in forms, and write a short email/letter (approx. 30 words). 4 reading + 1 writing task.",
+        tips: ["For forms: write clearly — block letters if unsure", "Email: greeting, 2–3 sentences, closing", "Check verb position 2 in every sentence"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "examSection" } }, id: "sectionSprechen" },
+      fields: {
+        internalName:    "Sprechen Section",
+        sectionName:     "Sprechen",
+        icon:            "🗣️",
+        durationMinutes: 15,
+        maxPoints:       25,
+        accentColor:     "#af52de",
+        description:     "3 speaking tasks: introduce yourself, ask and answer questions from prompt cards, and make a request/respond to a request.",
+        tips: ["Part 1: say name, country, job, hobby, language, home", "Part 2: form short questions using W-Fragen", "Part 3: use 'Können Sie...?' or 'Ich brauche...'"]
+      }
+    }
+  ],
+
+  // ── Content Type: grammarRule ─────────────────
+  grammarRules: [
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarArticles" },
+      fields: {
+        internalName: "Definite & Indefinite Articles",
+        title:        "Articles — der / die / das / ein / eine",
+        level:        "A1",
+        category:     "Articles",
+        explanation:  "German nouns have grammatical gender. The article changes by case.",
+        table: {
+          headers: ["Case", "Masculine (M)", "Feminine (F)", "Neuter (N)", "Plural"],
+          rows: [
+            ["Nominativ (Subject)", "der / ein", "die / eine", "das / ein", "die / —"],
+            ["Akkusativ (Object)", "den / einen", "die / eine", "das / ein", "die / —"],
+            ["Dativ (Indirect)", "dem / einem", "der / einer", "dem / einem", "den / —"]
+          ]
+        },
+        examples: [
+          { german: "Das ist ein Buch.", english: "This is a book.", note: "" },
+          { german: "Das Buch ist auf Deutsch.", english: "The book is in German.", note: "" },
+          { german: "Das ist eine Autobahn.", english: "This is a motorway.", note: "" },
+          { german: "Das ist ein Weißbier.", english: "This is a wheat beer.", note: "das Weißbier — neuter!" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarPossessives" },
+      fields: {
+        internalName: "Possessive Adjectives",
+        title:        "Possessive Adjectives — mein / meine / dein...",
+        level:        "A1",
+        category:     "Possessives",
+        explanation:  "Possessive adjectives agree with the gender of the noun they describe.",
+        table: {
+          headers: ["Person", "Masculine", "Feminine", "Neuter", "Plural"],
+          rows: [
+            ["ich → mein", "mein Vater", "meine Mutter", "mein Buch", "meine Bücher"],
+            ["du → dein", "dein Bruder", "deine Schwester", "dein Kind", "deine Kinder"],
+            ["er → sein", "sein Freund", "seine Frau", "sein Auto", "seine Autos"],
+            ["sie → ihr", "ihr Mann", "ihre Tochter", "ihr Haus", "ihre Eltern"]
+          ]
+        },
+        examples: [
+          { german: "Meine Mutter heißt Neha.", english: "My mother's name is Neha.", note: "" },
+          { german: "Mein Vater heißt Sunil.", english: "My father's name is Sunil.", note: "" },
+          { german: "Meine Frau ist Shanu.", english: "My wife is Shanu.", note: "" },
+          { german: "Mein Bruder spielt gern Fußball.", english: "My brother likes playing football.", note: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarVerbConjugation" },
+      fields: {
+        internalName: "Regular Verb Conjugation",
+        title:        "Verb Conjugation — Regular Verbs",
+        level:        "A1",
+        category:     "Verbs",
+        explanation:  "Regular verbs follow a predictable pattern. Drop -en from the infinitive, add the ending.",
+        table: {
+          headers: ["Person", "arbeiten", "kaufen", "kochen", "lernen"],
+          rows: [
+            ["ich", "arbeite", "kaufe", "koche", "lerne"],
+            ["du", "arbeitest", "kaufst", "kochst", "lernst"],
+            ["er/sie/es", "arbeitet", "kauft", "kocht", "lernt"],
+            ["wir", "arbeiten", "kaufen", "kochen", "lernen"],
+            ["ihr", "arbeitet", "kauft", "kocht", "lernt"],
+            ["sie/Sie", "arbeiten", "kaufen", "kochen", "lernen"]
+          ]
+        },
+        examples: [
+          { german: "Ich koche gern Butter Chicken mit Reis.", english: "I like cooking Butter Chicken with rice.", note: "" },
+          { german: "Meine Frau arbeitet bei Zalando.", english: "My wife works at Zalando.", note: "" },
+          { german: "Ich lerne gern Deutsch.", english: "I like learning German.", note: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarSeparableVerbs" },
+      fields: {
+        internalName: "Separable Verbs",
+        title:        "Separable Verbs — aufstehen, anrufen, einkaufen...",
+        level:        "A1",
+        category:     "Verbs",
+        explanation:  "The prefix splits off and goes to the end of the sentence. Verb stays in position 2.",
+        table: {
+          headers: ["Infinitive", "Meaning", "Example"],
+          rows: [
+            ["auf|stehen", "to get up", "Ich stehe um 7 Uhr auf."],
+            ["an|rufen", "to call", "Ich rufe meinen Vater an."],
+            ["ein|kaufen", "to shop", "Ich kaufe im Supermarkt ein."],
+            ["fern|sehen", "to watch TV", "Ich sehe am Abend fern."],
+            ["auf|räumen", "to tidy up", "Ich räume mein Haus auf."]
+          ]
+        },
+        examples: [
+          { german: "Ich stehe um sieben Uhr auf.", english: "I get up at seven o'clock.", note: "" },
+          { german: "Ich rufe auch meine Familie an.", english: "I also call my family.", note: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarModalVerbs" },
+      fields: {
+        internalName: "Modal Verbs",
+        title:        "Modal Verbs — müssen, dürfen, sollen, wollen",
+        level:        "A1",
+        category:     "Verbs",
+        explanation:  "Modal verbs go in position 2. The main verb goes to the END in infinitive form.",
+        table: {
+          headers: ["Modal", "Meaning", "ich", "du", "er/sie", "wir"],
+          rows: [
+            ["müssen", "must / have to", "muss", "musst", "muss", "müssen"],
+            ["dürfen", "may / allowed to", "darf", "darfst", "darf", "dürfen"],
+            ["sollen", "should / supposed to", "soll", "sollst", "soll", "sollen"],
+            ["wollen", "want to", "will", "willst", "will", "wollen"],
+            ["können", "can / able to", "kann", "kannst", "kann", "können"]
+          ]
+        },
+        examples: [
+          { german: "Zu Hause muss ich jeden Tag putzen.", english: "At home I must clean every day.", note: "" },
+          { german: "Ich darf für meine Frau Pasta kochen.", english: "I am allowed to cook pasta for my wife.", note: "" },
+          { german: "Ich darf nicht ins Büro gehen.", english: "I am not allowed to go to the office.", note: "" },
+          { german: "Meine Mutter sagt, ich soll Tennis spielen.", english: "My mother says I should play tennis.", note: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarPerfekt" },
+      fields: {
+        internalName: "Perfekt Tense (Past)",
+        title:        "Perfekt — haben / sein + Partizip II",
+        level:        "A1",
+        category:     "Tenses",
+        explanation:  "Use haben or sein in position 2. Partizip II (past participle) goes to the END.",
+        table: {
+          headers: ["Infinitive", "Partizip II", "Auxiliary", "Example"],
+          rows: [
+            ["aufstehen", "aufgestanden", "sein", "Ich bin um 7 Uhr aufgestanden."],
+            ["trinken", "getrunken", "haben", "Ich habe Kaffee getrunken."],
+            ["essen", "gegessen", "haben", "Ich habe Brot gegessen."],
+            ["arbeiten", "gearbeitet", "haben", "Ich habe zu Hause gearbeitet."],
+            ["fahren", "gefahren", "sein", "Ich bin nach Köln gefahren."],
+            ["kaufen", "gekauft", "haben", "Ich habe Socken gekauft."],
+            ["sehen", "gesehen", "haben", "Ich habe ferngesehen."],
+            ["spielen", "gespielt", "haben", "Ich habe Fußball gespielt."],
+            ["kommen", "gekommen", "sein", "Mein Freund ist heute gekommen."]
+          ]
+        },
+        examples: [
+          { german: "Gestern bin ich um 7 Uhr aufgestanden.", english: "Yesterday I got up at 7 o'clock.", note: "" },
+          { german: "Am Nachmittag habe ich Fußball gespielt.", english: "In the afternoon I played football.", note: "" },
+          { german: "Am Abend habe ich mit meiner Frau Deutsch gesprochen.", english: "In the evening I spoke German with my wife.", note: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarWFragen" },
+      fields: {
+        internalName: "W-Fragen",
+        title:        "W-Fragen — Question Words",
+        level:        "A1",
+        category:     "Questions",
+        explanation:  "Question word goes in position 1. Verb goes in position 2. Very important for the Speaking exam.",
+        table: {
+          headers: ["Word", "Meaning", "Case/Use", "Example"],
+          rows: [
+            ["Wer", "Who", "Nominativ (Person)", "Wer kommt heute?"],
+            ["Wen", "Whom (acc.)", "Akkusativ (Person)", "Wen rufst du an?"],
+            ["Wem", "To whom", "Dativ (Person)", "Wem hilfst du?"],
+            ["Was", "What", "Nominativ / Akkusativ", "Was ist das?"],
+            ["Wo", "Where", "Dativ (place)", "Wo arbeitest du?"],
+            ["Wohin", "Where to", "Akkusativ (direction)", "Wohin gehst du am Abend?"],
+            ["Woher", "Where from", "Dativ", "Woher kommst du?"],
+            ["Wann", "When", "Time", "Wann kommst du nach Hause?"],
+            ["Um wie viel Uhr", "At what time", "Time", "Um wie viel Uhr fängst du an?"],
+            ["Wie", "How", "Manner", "Wie ist deine Arbeit?"],
+            ["Wie viel", "How much / many", "Amount / Price", "Wie viel kostet das?"],
+            ["Welche/r/s", "Which", "Gender-based", "Welcher Tag ist dein Lieblingstag?"]
+          ]
+        },
+        examples: [
+          { german: "Wer hat das Handy?", english: "Who has the mobile?", note: "→ Meine Schwester hat das Handy." },
+          { german: "Wem hilfst du bei der Arbeit?", english: "Who do you help at work?", note: "→ Ich helfe meiner Kollegin." },
+          { german: "Wen triffst du heute?", english: "Whom do you meet today?", note: "→ Ich treffe heute meinen Bruder." }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "grammarRule" } }, id: "grammarWordOrder" },
+      fields: {
+        internalName: "Word Order Rule",
+        title:        "Word Order — Verb always in Position 2",
+        level:        "A1",
+        category:     "Syntax",
+        explanation:  "The most important rule in German: the conjugated verb is ALWAYS in position 2, no matter what comes first.",
+        table: {
+          headers: ["Position 1", "Position 2 (Verb)", "Rest of sentence"],
+          rows: [
+            ["Ich", "stehe", "um 7 Uhr auf."],
+            ["Um 8 Uhr", "frühstücke", "ich."],
+            ["Am Mittag", "esse", "ich Hähnchen mit Reis."],
+            ["Dann", "habe", "ich Kaffee getrunken."],
+            ["Gestern", "bin", "ich nach Köln gefahren."]
+          ]
+        },
+        examples: [
+          { german: "Um fünf vor neun arbeite ich.", english: "At five to nine I work.", note: "Time first → verb still pos. 2" },
+          { german: "Am Abend muss ich joggen gehen.", english: "In the evening I must go jogging.", note: "Modal verb pos. 2, infinitive last" }
+        ]
+      }
+    }
+  ],
+
+  // ── Content Type: vocabularySet ──────────────
+  vocabularySets: [
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabSupermarket" },
+      fields: {
+        internalName: "Supermarket Vocabulary",
+        category:     "🛒 Supermarkt",
+        level:        "A1",
+        items: [
+          { article: "das", word: "Buch", translation: "book", example: "Das Buch ist auf Deutsch." },
+          { article: "das", word: "Weißbier", translation: "wheat beer", example: "Das Weißbier ist gut." },
+          { article: "der", word: "Fisch", translation: "fish", example: "Im Supermarkt kaufe ich Fisch." },
+          { article: "die", word: "Cola", translation: "cola", example: "Ein Liter Cola kostet 1,59 Euro." },
+          { article: "das", word: "Salz", translation: "salt", example: "Ich brauche Salz." },
+          { article: "der", word: "Pfeffer", translation: "pepper", example: "Salz und Pfeffer." },
+          { article: "die", word: "Butter", translation: "butter", example: "Ich esse Brot mit Butter." },
+          { article: "der", word: "Mais", translation: "corn", example: "Zwei Dosen Mais kosten 2,59 Euro." },
+          { article: "das", word: "Mehl", translation: "flour", example: "Ein Paket Mehl." },
+          { article: "das", word: "Hähnchen", translation: "chicken", example: "Ich koche Hähnchen mit Reis." },
+          { article: "der", word: "Reis", translation: "rice", example: "Hähnchen mit Reis." },
+          { article: "die", word: "Zwiebel", translation: "onion", example: "Ich brauche Zwiebeln." },
+          { article: "die", word: "Gewürze", translation: "spices", example: "Ich brauche Gewürze." },
+          { article: "das", word: "Öl", translation: "oil", example: "Ich brauche Öl." },
+          { article: "der", word: "Joghurt", translation: "yoghurt", example: "Ich brauche Joghurt." },
+          { article: "der", word: "Lachs", translation: "salmon", example: "Ein Lachs kostet 8,99 Euro." },
+          { article: "die", word: "Milch", translation: "milk", example: "Ein Liter Milch." },
+          { article: "die", word: "Banane", translation: "banana", example: "Wie viel kosten zwei Bananen?" },
+          { article: "der", word: "Apfel", translation: "apple", example: "Fünf Kilo Äpfel." },
+          { article: "der", word: "Stift", translation: "pen", example: "Ich habe einen Stift gekauft." }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabFamily" },
+      fields: {
+        internalName: "Family Vocabulary",
+        category:     "👨‍👩‍👧 Familie",
+        level:        "A1",
+        items: [
+          { article: "die", word: "Mutter", translation: "mother", example: "Meine Mutter heißt Neha." },
+          { article: "der", word: "Vater", translation: "father", example: "Mein Vater heißt Sunil." },
+          { article: "die", word: "Frau", translation: "wife/woman", example: "Meine Frau ist Shanu." },
+          { article: "die", word: "Schwester", translation: "sister", example: "Meine Schwester heißt Anjali." },
+          { article: "der", word: "Bruder", translation: "brother", example: "Mein Bruder spielt gern Fußball." },
+          { article: "der", word: "Freund", translation: "friend/boyfriend", example: "Mein Freund sagt..." },
+          { article: "die", word: "Freundin", translation: "friend/girlfriend", example: "Meine Freundin sagt..." },
+          { article: "die", word: "Familie", translation: "family", example: "Ich spreche mit meiner Familie." },
+          { article: "die", word: "Eltern", translation: "parents (pl.)", example: "Meine Eltern wohnen in Indien." },
+          { article: "der", word: "Kollege", translation: "colleague (m)", example: "Mein Lieblingskollege." },
+          { article: "die", word: "Kollegin", translation: "colleague (f)", example: "Ich helfe meiner Kollegin." },
+          { article: "der", word: "Lehrer", translation: "teacher (m)", example: "Mein Lehrer sagt..." }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabTime" },
+      fields: {
+        internalName: "Time & Days Vocabulary",
+        category:     "⏰ Zeit & Tage",
+        level:        "A1",
+        items: [
+          { article: "-", word: "Montag", translation: "Monday", example: "Am Montag." },
+          { article: "-", word: "Dienstag", translation: "Tuesday", example: "Am Dienstag." },
+          { article: "-", word: "Mittwoch", translation: "Wednesday", example: "Am Mittwoch." },
+          { article: "-", word: "Donnerstag", translation: "Thursday", example: "Am Donnerstag." },
+          { article: "-", word: "Freitag", translation: "Friday", example: "Freitags gehe ich zum Bauernhof." },
+          { article: "-", word: "Samstag", translation: "Saturday", example: "Am Samstag mache ich eine Party." },
+          { article: "-", word: "Sonntag", translation: "Sunday", example: "Am Sonntag treffe ich meine Schwester." },
+          { article: "-", word: "morgens", translation: "in the morning", example: "Am Morgen bin ich aufgestanden." },
+          { article: "-", word: "mittags", translation: "at midday", example: "Am Mittag esse ich Hähnchen." },
+          { article: "-", word: "nachmittags", translation: "in the afternoon", example: "Am Nachmittag habe ich gespielt." },
+          { article: "-", word: "abends", translation: "in the evening", example: "Am Abend muss ich joggen." },
+          { article: "-", word: "nachts", translation: "at night", example: "In der Nacht esse ich mit meiner Familie." },
+          { article: "-", word: "gestern", translation: "yesterday", example: "Gestern bin ich um 7 Uhr aufgestanden." },
+          { article: "-", word: "heute", translation: "today", example: "Heute habe ich mein Geld zurückbekommen." },
+          { article: "-", word: "morgen", translation: "tomorrow", example: "Morgen komme ich." },
+          { article: "-", word: "übermorgen", translation: "day after tomorrow", example: "" }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabPlaces" },
+      fields: {
+        internalName: "Places & Germany",
+        category:     "📍 Orte & Deutschland",
+        level:        "A1",
+        items: [
+          { article: "das", word: "Gebäude", translation: "building", example: "Das ist ein großes Gebäude." },
+          { article: "die", word: "Autobahn", translation: "motorway", example: "In Deutschland gibt es zahlreiche Autobahnen." },
+          { article: "der", word: "Berg", translation: "mountain", example: "Ein Berg ist bei Garmisch-Partenkirchen." },
+          { article: "die", word: "Zugspitze", translation: "highest peak in Germany", example: "Der Berg heißt Zugspitze." },
+          { article: "das", word: "Büro", translation: "office", example: "Ich darf nicht ins Büro gehen." },
+          { article: "der", word: "Supermarkt", translation: "supermarket", example: "Im Supermarkt kaufe ich Fisch." },
+          { article: "der", word: "Park", translation: "park", example: "Ich treffe meine Schwester im Park." },
+          { article: "der", word: "Bauernhof", translation: "farm", example: "Ich gehe zu unserem Bauernhof." },
+          { article: "die", word: "Küche", translation: "kitchen", example: "Wen siehst du in der Küche?" },
+          { article: "das", word: "Haus", translation: "house", example: "Ich muss mein Haus aufräumen." }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabClothing" },
+      fields: {
+        internalName: "Clothing Vocabulary",
+        category:     "👗 Kleidung",
+        level:        "A1",
+        items: [
+          { article: "das", word: "Kleid", translation: "dress", example: "Ich habe das Kleid im Markt gekauft." },
+          { article: "der", word: "Pullover", translation: "pullover/jumper", example: "Ich sende den Pullover meiner Mutter." },
+          { article: "der", word: "Anzug", translation: "suit", example: "Passt ihm der Anzug?" },
+          { article: "die", word: "Jacke", translation: "jacket", example: "Passt dir diese Jacke?" },
+          { article: "die", word: "Brille", translation: "glasses", example: "Steht ihm die neue Brille?" },
+          { article: "die", word: "Socken", translation: "socks (pl.)", example: "Ich habe Socken bei Amazon bestellt." },
+          { article: "das", word: "T-Shirt", translation: "T-shirt", example: "Das bronzene T-Shirt steht mir gut." }
+        ]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "vocabularySet" } }, id: "vocabHousehold" },
+      fields: {
+        internalName: "Household & Daily Life",
+        category:     "🏠 Zuhause",
+        level:        "A1",
+        items: [
+          { article: "-", word: "putzen", translation: "to clean", example: "Ich muss jeden Tag putzen." },
+          { article: "-", word: "aufräumen", translation: "to tidy up", example: "Ich muss mein Haus aufräumen." },
+          { article: "-", word: "kochen", translation: "to cook", example: "Ich darf Pasta kochen." },
+          { article: "-", word: "joggen", translation: "to jog", example: "Am Abend muss ich joggen gehen." },
+          { article: "-", word: "bestellen", translation: "to order", example: "Ich habe Socken bei Amazon bestellt." },
+          { article: "-", word: "reklamieren", translation: "to complain/return", example: "Ich habe das Produkt reklamiert." },
+          { article: "-", word: "zurückbekommen", translation: "to get back", example: "Ich habe mein Geld zurückbekommen." },
+          { article: "der", word: "Kaffee", translation: "coffee", example: "Um 14 Uhr darf ich Kaffee machen." },
+          { article: "der", word: "Kurs", translation: "course/class", example: "Um 18 Uhr habe ich meinen Deutschkurs." }
+        ]
+      }
+    }
+  ],
+
+  // ── Content Type: speakingPrompt ─────────────
+  speakingPrompts: [
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakSelf" },
+      fields: {
+        internalName:  "Self-Introduction Template",
+        category:      "Teil 1 — Vorstellen",
+        question:      "Stellen Sie sich vor! (Introduce yourself)",
+        sampleAnswer:  "Hallo! Mein Name ist Ankit Sharma. Ich komme aus Indien. Ich wohne in Berlin. Ich arbeite als Customer Support Engineer bei Contentful. Ich spreche Englisch, Hindi und ein bisschen Deutsch. In meiner Freizeit koche ich gern Butter Chicken und ich laufe gern. Ich lerne Deutsch, weil ich in Deutschland wohne.",
+        keyWords:      ["Mein Name ist", "Ich komme aus", "Ich wohne in", "Ich arbeite als", "Ich spreche", "In meiner Freizeit"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakWork" },
+      fields: {
+        internalName:  "Work Questions",
+        category:      "Teil 2 — Arbeit",
+        question:      "Fragen zur Arbeit (Questions about work)",
+        sampleAnswer:  "Ich arbeite bei Contentful als Customer Support Engineer. Ich arbeite circa vierzig Stunden pro Woche. Ich arbeite von zu Hause aus. In der Pause esse ich mittags Hähnchen mit Reis. Ich helfe meiner Kollegin bei der Arbeit. Mein Lieblingskollege hat im Dezember Geburtstag.",
+        keyWords:      ["Wo arbeitest du?", "Wie viele Stunden?", "Was machst du in der Pause?", "Wann fängst du an?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakFamily" },
+      fields: {
+        internalName:  "Family Questions",
+        category:      "Teil 2 — Familie",
+        question:      "Fragen zur Familie (Questions about family)",
+        sampleAnswer:  "Ich habe eine kleine Familie. Meine Mutter heißt Neha und mein Vater heißt Sunil. Meine Frau heißt Shanu und sie arbeitet bei Zalando. Ich habe eine Schwester, sie heißt Anjali, und einen Bruder. Mein Bruder spielt gern Fußball. Ich spreche immer am Sonntag mit meiner Familie. Ich besuche meine Familie im Winter.",
+        keyWords:      ["Meine Familie", "Mein Vater heißt", "Meine Mutter heißt", "Ich besuche", "Ich spreche mit"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakDailyRoutine" },
+      fields: {
+        internalName:  "Daily Routine",
+        category:      "Teil 2 — Alltag",
+        question:      "Erzählen Sie über Ihren Tag! (Tell us about your day)",
+        sampleAnswer:  "Ich stehe um sieben Uhr auf. Dann trinke ich Kaffee. Um acht Uhr frühstücke ich. Ich esse Brot mit Butter. Um fünf vor neun arbeite ich. Am Mittag esse ich Hähnchen mit Reis um halb zwei. Dann arbeite ich wieder. Um 18 Uhr habe ich meinen Deutschkurs.",
+        keyWords:      ["Ich stehe auf", "Dann", "Um ... Uhr", "Am Mittag", "Danach", "Am Abend"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakShopping" },
+      fields: {
+        internalName:  "Shopping / Dative Verbs",
+        category:      "Teil 3 — Einkaufen",
+        question:      "Dativverben in der Praxis (Dative verbs in context)",
+        sampleAnswer:  "Gefällt dir der Film? — Ja, der Film gefällt mir sehr gut. Passt dir diese Jacke? — Nein, sie ist ein bisschen zu groß. Wem hilfst du? — Ich helfe meiner Kollegin bei der Arbeit. Wem gibst du das Buch? — Ich gebe das Buch meiner Lehrerin.",
+        keyWords:      ["gefallen (+ Dativ)", "passen (+ Dativ)", "stehen (+ Dativ)", "geben (+ Dativ)", "helfen (+ Dativ)"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "speakingPrompt" } }, id: "speakWeekend" },
+      fields: {
+        internalName:  "Weekend Activities",
+        category:      "Teil 2 — Wochenende",
+        question:      "Was machen Sie am Wochenende? (What do you do at the weekend?)",
+        sampleAnswer:  "Ich besuche am Wochenende meine Familie. Am Sonntag treffe ich meine Schwester im Park. Dann fahre ich mit meiner Frau und meinem Bruder zum Supermarkt. Freitags gehe ich mit meiner Mutter und meinem Vater zu unserem Bauernhof. In der Nacht esse ich mit meiner Familie.",
+        keyWords:      ["Am Wochenende", "Am Sonntag", "Dann", "Freitags", "Mit meiner / mit meinem"]
+      }
+    }
+  ],
+
+  // ── Content Type: writingTemplate ────────────
+  writingTemplates: [
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt001" },
+      fields: {
+        internalName: "Party Invitation",
+        title: "Einladung zur Party",
+        category: "Einladung",
+        subject: "Einladung",
+        greeting: "Hallo Max,",
+        body: "ich mache am Samstag eine Party. Ich lade euch alle herzlich ein. Ich rufe auch meine Familie an. Du musst unbedingt kommen! Die Party beginnt um 22 Uhr und endet um 4 Uhr morgens.",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Ich lade euch ein.", "Du musst unbedingt kommen!", "Die Party beginnt um..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt002" },
+      fields: {
+        internalName: "Birthday Invitation",
+        title: "Einladung zum Geburtstag",
+        category: "Einladung",
+        subject: "Mein Geburtstag",
+        greeting: "Liebe Anjali,",
+        body: "ich feiere am Freitag meinen Geburtstag. Ich lade dich herzlich ein. Wir essen zusammen und hören Musik. Die Feier beginnt um 18 Uhr bei mir zu Hause. Ich freue mich auf dich!",
+        closing: "Liebe Grüße,\nAnkit",
+        keyPhrases: ["Ich feiere meinen Geburtstag.", "Ich lade dich herzlich ein.", "Ich freue mich auf dich!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt003" },
+      fields: {
+        internalName: "Barbecue Invitation",
+        title: "Einladung zum Grillabend",
+        category: "Einladung",
+        subject: "Grillabend",
+        greeting: "Hallo Shanu,",
+        body: "am Samstag machen wir einen Grillabend in unserem Garten. Du bist herzlich eingeladen! Wir grillen Hähnchen und Gemüse. Es beginnt um 17 Uhr. Bitte bring Getränke mit.",
+        closing: "Bis bald!\nAnkit",
+        keyPhrases: ["Du bist herzlich eingeladen!", "Bitte bring ... mit.", "Es beginnt um..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt004" },
+      fields: {
+        internalName: "Cinema Invitation",
+        title: "Einladung ins Kino",
+        category: "Einladung",
+        subject: "Kino",
+        greeting: "Hallo Anjali,",
+        body: "ich gehe am Sonntag ins Kino und möchte dich einladen. Der Film beginnt um 20 Uhr. Das Kino ist in der Stadtmitte. Kommst du mit?",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["ich möchte dich einladen.", "Kommst du mit?", "Der Film beginnt um..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt005" },
+      fields: {
+        internalName: "Football Invitation",
+        title: "Einladung: Fußball schauen",
+        category: "Einladung",
+        subject: "Fußball schauen",
+        greeting: "Hallo Sunil,",
+        body: "am Samstag spielt Deutschland gegen Indien. Ich schaue das Spiel bei mir zu Hause. Du kannst gerne mitkommen! Das Spiel beginnt um 20 Uhr. Ich mache Popcorn.",
+        closing: "Bis Samstag!\nAnkit",
+        keyPhrases: ["Du kannst gerne mitkommen!", "Das Spiel beginnt um...", "Ich mache..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt006" },
+      fields: {
+        internalName: "Doctor Appointment Cancel",
+        title: "Termin beim Arzt absagen",
+        category: "Absage",
+        subject: "Absage: Arzttermin",
+        greeting: "Guten Tag,",
+        body: "ich habe am Dienstag um 10 Uhr einen Termin. Leider kann ich nicht kommen, weil ich krank bin. Ich möchte den Termin absagen. Kann ich nächste Woche einen neuen Termin bekommen?",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte den Termin absagen.", "Leider kann ich nicht kommen.", "Kann ich einen neuen Termin bekommen?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt007" },
+      fields: {
+        internalName: "Running Late Notification",
+        title: "Verspätung mitteilen",
+        category: "Absage",
+        subject: "Verspätung",
+        greeting: "Hallo Max,",
+        body: "ich komme heute leider zu spät. Mein Zug hat Verspätung. Ich bin in etwa 30 Minuten da. Bitte beginnt ohne mich.",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Ich komme zu spät.", "Mein Zug hat Verspätung.", "Bitte beginnt ohne mich."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt008" },
+      fields: {
+        internalName: "Cancel Order",
+        title: "Bestellung stornieren",
+        category: "Absage",
+        subject: "Stornierung meiner Bestellung",
+        greeting: "Guten Tag,",
+        body: "ich habe am Montag eine Bestellung aufgegeben. Meine Bestellnummer ist 12345. Ich möchte die Bestellung stornieren. Bitte bestätigen Sie die Stornierung.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte die Bestellung stornieren.", "Meine Bestellnummer ist...", "Bitte bestätigen Sie..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt009" },
+      fields: {
+        internalName: "Sick Note for School",
+        title: "Krankmeldung für die Schule",
+        category: "Absage",
+        subject: "Krankmeldung",
+        greeting: "Sehr geehrte Lehrerin,",
+        body: "mein Kind kann heute nicht in die Schule kommen, weil es krank ist. Es hat Fieber. Ich melde es für heute krank. Es kommt morgen wieder, wenn es besser ist.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich melde es krank.", "Es hat Fieber.", "Es kommt morgen wieder."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt010" },
+      fields: {
+        internalName: "German Course Inquiry",
+        title: "Anfrage: Deutschkurs",
+        category: "Anfrage",
+        subject: "Anfrage: Deutschkurs",
+        greeting: "Guten Tag,",
+        body: "ich interessiere mich für einen Deutschkurs auf dem Niveau A1. Können Sie mir bitte Informationen schicken? Wann beginnt der nächste Kurs? Wie viel kostet der Kurs? Gibt es noch freie Plätze?",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich interessiere mich für...", "Können Sie mir Informationen schicken?", "Wie viel kostet...?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt011" },
+      fields: {
+        internalName: "Hotel Booking Inquiry",
+        title: "Anfrage: Hotel",
+        category: "Anfrage",
+        subject: "Zimmeranfrage",
+        greeting: "Guten Tag,",
+        body: "ich möchte ein Zimmer buchen. Ich brauche ein Einzelzimmer für drei Nächte, vom 10. bis 13. Juli. Was kostet das Zimmer pro Nacht? Haben Sie noch freie Zimmer?",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte ein Zimmer buchen.", "Ich brauche ein Zimmer für... Nächte.", "Haben Sie noch freie Zimmer?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt012" },
+      fields: {
+        internalName: "Swimming Course Inquiry",
+        title: "Anfrage: Schwimmkurs",
+        category: "Anfrage",
+        subject: "Anfrage Schwimmkurs",
+        greeting: "Guten Tag,",
+        body: "ich interessiere mich für einen Schwimmkurs für Erwachsene. Wann findet der Kurs statt? Wie lange dauert der Kurs? Wie viel kostet er? Bitte schicken Sie mir weitere Informationen.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Wann findet der Kurs statt?", "Wie lange dauert...?", "Bitte schicken Sie mir..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt013" },
+      fields: {
+        internalName: "Fitness Course Inquiry",
+        title: "Anfrage: Fitnesskurs",
+        category: "Anfrage",
+        subject: "Anfrage Fitnesskurs",
+        greeting: "Guten Tag,",
+        body: "ich möchte mehr Informationen über Ihre Fitnesskurse. Gibt es einen Kurs für Anfänger? Wann und wo findet der Kurs statt? Was kostet die Mitgliedschaft pro Monat?",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Gibt es einen Kurs für Anfänger?", "Was kostet die Mitgliedschaft?", "Wann findet der Kurs statt?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt014" },
+      fields: {
+        internalName: "Vacation Request",
+        title: "Urlaubsantrag",
+        category: "Anfrage",
+        subject: "Urlaubsantrag",
+        greeting: "Guten Tag Herr Müller,",
+        body: "ich möchte gerne Urlaub nehmen. Ich plane vom 1. bis 15. August Urlaub zu machen. Können Sie meinen Urlaubsantrag bitte genehmigen? Ich organisiere alles vor meinem Urlaub.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte Urlaub nehmen.", "Können Sie ... genehmigen?", "Ich plane vom ... bis..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt015" },
+      fields: {
+        internalName: "Amazon Return Complaint",
+        title: "Reklamation: Amazon Rücksendung",
+        category: "Beschwerde",
+        subject: "Reklamation meiner Bestellung",
+        greeting: "Guten Tag,",
+        body: "am Samstag habe ich bei Amazon Socken bestellt. Die Socken haben 10 Euro gekostet. Sie sind heute angekommen, aber sie waren zu klein. Deshalb möchte ich das Produkt zurückgeben. Bitte überweisen Sie mir das Geld zurück.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Die Socken waren zu klein.", "Ich möchte das Produkt zurückgeben.", "Bitte überweisen Sie mir das Geld zurück."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt016" },
+      fields: {
+        internalName: "Apartment Defect Complaint",
+        title: "Beschwerde: Defekt in der Wohnung",
+        category: "Beschwerde",
+        subject: "Defekt in meiner Wohnung",
+        greeting: "Guten Tag,",
+        body: "in meiner Wohnung gibt es ein Problem. Die Heizung funktioniert nicht. Es ist sehr kalt in der Wohnung. Bitte schicken Sie jemanden, der das repariert. Das Problem besteht seit drei Tagen.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Die Heizung funktioniert nicht.", "Bitte schicken Sie jemanden.", "Das Problem besteht seit..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt017" },
+      fields: {
+        internalName: "Late Delivery Complaint",
+        title: "Beschwerde: Verspätete Lieferung",
+        category: "Beschwerde",
+        subject: "Verspätete Lieferung",
+        greeting: "Guten Tag,",
+        body: "ich habe vor zwei Wochen eine Bestellung aufgegeben. Die Lieferung sollte letzte Woche ankommen. Aber ich habe noch nichts bekommen. Wo ist meine Bestellung? Bitte antworten Sie schnell.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Die Lieferung sollte ... ankommen.", "Ich habe noch nichts bekommen.", "Wo ist meine Bestellung?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt018" },
+      fields: {
+        internalName: "Loud Neighbours Complaint",
+        title: "Beschwerde: Laute Nachbarn",
+        category: "Beschwerde",
+        subject: "Lärm von den Nachbarn",
+        greeting: "Guten Tag,",
+        body: "ich möchte mich über den Lärm beschweren. Meine Nachbarn machen jeden Abend sehr viel Lärm. Ich kann nicht schlafen. Bitte sprechen Sie mit ihnen. Ich brauche Ruhe.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte mich beschweren.", "Meine Nachbarn machen Lärm.", "Ich kann nicht schlafen."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt019" },
+      fields: {
+        internalName: "Bad Service Complaint",
+        title: "Beschwerde: Schlechter Service",
+        category: "Beschwerde",
+        subject: "Beschwerde über den Service",
+        greeting: "Guten Tag,",
+        body: "ich war letzte Woche in Ihrem Restaurant. Der Service war sehr schlecht. Wir haben lange auf das Essen gewartet. Das Essen war auch kalt. Ich bin sehr unzufrieden. Ich möchte eine Erklärung.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Der Service war sehr schlecht.", "Wir haben lange gewartet.", "Ich bin sehr unzufrieden."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt020" },
+      fields: {
+        internalName: "Internet Complaint",
+        title: "Beschwerde: Internet",
+        category: "Beschwerde",
+        subject: "Internetprobleme",
+        greeting: "Guten Tag,",
+        body: "mein Internet funktioniert seit drei Tagen nicht. Ich arbeite von zu Hause aus und brauche das Internet. Bitte lösen Sie das Problem so schnell wie möglich. Ich zahle jeden Monat für den Service.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Das Internet funktioniert nicht.", "Ich brauche das Internet.", "Bitte lösen Sie das Problem."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt021" },
+      fields: {
+        internalName: "Address Change Notification",
+        title: "Adressänderung mitteilen",
+        category: "Mitteilung",
+        subject: "Meine neue Adresse",
+        greeting: "Guten Tag,",
+        body: "ich möchte Ihnen meine neue Adresse mitteilen. Ich bin letzte Woche umgezogen. Meine neue Adresse ist: Musterstraße 5, 10115 Berlin. Bitte senden Sie Post an die neue Adresse.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte mitteilen.", "Ich bin umgezogen.", "Meine neue Adresse ist..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt022" },
+      fields: {
+        internalName: "New Job Notification",
+        title: "Neuen Job mitteilen",
+        category: "Mitteilung",
+        subject: "Neuer Job",
+        greeting: "Lieber Max,",
+        body: "ich habe eine gute Nachricht! Ich habe einen neuen Job. Ich arbeite jetzt als Customer Support Engineer bei Contentful. Der Job macht mir viel Spaß. Ich beginne am 1. Mai.",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Ich habe eine gute Nachricht!", "Ich habe einen neuen Job.", "Ich beginne am..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt023" },
+      fields: {
+        internalName: "Moving House Notification",
+        title: "Umzug mitteilen",
+        category: "Mitteilung",
+        subject: "Ich bin umgezogen",
+        greeting: "Hallo Familie,",
+        body: "ich habe eine Neuigkeit. Ich bin nach Berlin umgezogen! Meine neue Wohnung ist schön und groß. Ich habe drei Zimmer. Besucht mich bald! Ich freue mich auf euch.",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Ich bin umgezogen.", "Meine neue Wohnung ist...", "Besucht mich bald!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt024" },
+      fields: {
+        internalName: "Library Book Extension",
+        title: "Bücher verlängern",
+        category: "Mitteilung",
+        subject: "Bücher verlängern",
+        greeting: "Guten Tag,",
+        body: "ich habe drei Bücher ausgeliehen. Ich möchte die Bücher gerne verlängern. Meine Kundennummer ist 98765. Wie lange kann ich die Bücher noch behalten? Bitte bestätigen Sie die Verlängerung.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte die Bücher verlängern.", "Meine Kundennummer ist...", "Bitte bestätigen Sie..."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt025" },
+      fields: {
+        internalName: "Birthday Congratulations",
+        title: "Glückwunsch zum Geburtstag",
+        category: "Glückwunsch",
+        subject: "Alles Gute zum Geburtstag!",
+        greeting: "Liebe Anjali,",
+        body: "herzlichen Glückwunsch zu deinem Geburtstag! Ich wünsche dir alles Gute, Gesundheit und viel Glück. Ich hoffe, du hast einen wunderschönen Tag. Ich denke an dich!",
+        closing: "Viele Grüße und alles Liebe,\nAnkit",
+        keyPhrases: ["Herzlichen Glückwunsch!", "Ich wünsche dir alles Gute.", "Ich denke an dich!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt026" },
+      fields: {
+        internalName: "Exam Passed Congratulations",
+        title: "Glückwunsch zur bestandenen Prüfung",
+        category: "Glückwunsch",
+        subject: "Glückwunsch zur Prüfung!",
+        greeting: "Hallo Shanu,",
+        body: "ich habe gehört, dass du die Prüfung bestanden hast. Herzlichen Glückwunsch! Das ist fantastisch! Du hast sehr hart gearbeitet. Ich bin so stolz auf dich. Lass uns das feiern!",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Herzlichen Glückwunsch!", "Du hast hart gearbeitet.", "Lass uns das feiern!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt027" },
+      fields: {
+        internalName: "Thank You Letter",
+        title: "Dankesbrief",
+        category: "Dankeschön",
+        subject: "Vielen Dank!",
+        greeting: "Liebe Neha,",
+        body: "ich möchte dir herzlich danken. Du hast mir sehr geholfen. Ohne deine Hilfe hätte ich das nicht geschafft. Du bist die beste Mutter der Welt. Ich bin sehr dankbar.",
+        closing: "Mit viel Liebe,\nAnkit",
+        keyPhrases: ["Ich möchte dir danken.", "Du hast mir geholfen.", "Ich bin sehr dankbar."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt028" },
+      fields: {
+        internalName: "New Year Wishes",
+        title: "Neujahrsgrüße",
+        category: "Glückwunsch",
+        subject: "Frohes neues Jahr!",
+        greeting: "Liebe Familie,",
+        body: "ich wünsche euch ein frohes neues Jahr! Ich hoffe, das neue Jahr bringt euch viel Glück, Gesundheit und Freude. Ich freue mich darauf, euch bald zu sehen. Viel Erfolg im neuen Jahr!",
+        closing: "Herzlichst,\nAnkit",
+        keyPhrases: ["Frohes neues Jahr!", "Ich wünsche euch...", "Viel Erfolg im neuen Jahr!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt029" },
+      fields: {
+        internalName: "Weekend Description",
+        title: "Wochenendpläne beschreiben",
+        category: "Beschreibung",
+        subject: "Mein Wochenende",
+        greeting: "Hallo Max,",
+        body: "ich habe ein tolles Wochenende geplant. Am Samstag fahre ich mit meiner Frau nach München. Am Abend gehen wir ins Restaurant und essen Hähnchen-Curry mit Reis. Am Sonntag treffe ich meine Schwester im Park und wir spazieren. Es wird schön!",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Ich habe geplant...", "Am Samstag / Am Sonntag", "Es wird schön!"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt030" },
+      fields: {
+        internalName: "Family Description",
+        title: "Familie beschreiben",
+        category: "Beschreibung",
+        subject: "Meine Familie",
+        greeting: "Hallo Frau Müller,",
+        body: "ich möchte Ihnen meine Familie vorstellen. Meine Mutter heißt Neha und mein Vater heißt Sunil. Sie wohnen in Indien. Meine Frau heißt Shanu und sie arbeitet bei Zalando. Meine Schwester heißt Anjali und mein Bruder spielt gern Fußball. Wir sind eine kleine, aber glückliche Familie.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich möchte vorstellen.", "Meine Familie kommt aus...", "Wir sind eine...Familie."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt031" },
+      fields: {
+        internalName: "Favourite Sport Description",
+        title: "Lieblingssport beschreiben",
+        category: "Beschreibung",
+        subject: "Mein Lieblingssport",
+        greeting: "Hallo Lehrer,",
+        body: "mein Lieblingssport ist Cricket. Ich spiele Cricket sehr gern. Mein Vater sagt, ich soll Tennis spielen, aber ich mag Cricket lieber. Ich spiele Cricket mit meinem Bruder am Wochenende. Cricket macht mir viel Spaß.",
+        closing: "Viele Grüße,\nAnkit",
+        keyPhrases: ["Mein Lieblingssport ist...", "Ich spiele ... sehr gern.", "Das macht mir Spaß."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt032" },
+      fields: {
+        internalName: "Bank Card Report Complaint",
+        title: "Bankkarte melden",
+        category: "Beschwerde",
+        subject: "Verlust meiner Bankkarte",
+        greeting: "Guten Tag,",
+        body: "ich habe meine Bankkarte verloren. Bitte sperren Sie die Karte sofort. Meine Kartennummer ist 1234 5678 9012 3456. Ich brauche so schnell wie möglich eine neue Karte. Bitte senden Sie sie an meine Adresse.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich habe meine Karte verloren.", "Bitte sperren Sie die Karte.", "Ich brauche eine neue Karte."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt033" },
+      fields: {
+        internalName: "ID Document Lost Notification",
+        title: "Ausweis verloren melden",
+        category: "Mitteilung",
+        subject: "Verlust meines Ausweises",
+        greeting: "Guten Tag,",
+        body: "ich habe meinen Personalausweis verloren. Ich möchte das melden. Ich habe ihn am Montag verloren. Ich brauche einen neuen Ausweis. Wie kann ich einen neuen Ausweis beantragen? Was muss ich mitbringen?",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Ich habe ... verloren.", "Ich möchte das melden.", "Wie kann ich ... beantragen?"]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt034" },
+      fields: {
+        internalName: "Phone Broken Complaint",
+        title: "Defektes Handy zurückgeben",
+        category: "Beschwerde",
+        subject: "Defektes Handy",
+        greeting: "Guten Tag,",
+        body: "ich habe vor zwei Wochen ein Handy in Ihrem Geschäft gekauft. Aber das Handy ist kaputt. Das Display funktioniert nicht. Ich möchte das Handy zurückgeben oder reparieren lassen. Bitte helfen Sie mir.",
+        closing: "Mit freundlichen Grüßen,\nAnkit Sharma",
+        keyPhrases: ["Das Handy ist kaputt.", "Ich möchte das Handy zurückgeben.", "Bitte helfen Sie mir."]
+      }
+    },
+    {
+      sys: { contentType: { sys: { id: "writingTemplate" } }, id: "wt035" },
+      fields: {
+        internalName: "Baby Congratulations",
+        title: "Glückwunsch zur Geburt",
+        category: "Glückwunsch",
+        subject: "Glückwunsch zum Baby!",
+        greeting: "Liebe Anjali und Familie,",
+        body: "herzlichen Glückwunsch zur Geburt eures Babys! Das sind wunderbare Neuigkeiten. Ich wünsche euch und eurem Baby alles Gute und viel Gesundheit. Das Baby ist bestimmt wunderschön. Ich freue mich sehr für euch!",
+        closing: "Viele Grüße und alles Liebe,\nAnkit",
+        keyPhrases: ["Herzlichen Glückwunsch zur Geburt!", "Das sind wunderbare Neuigkeiten.", "Ich wünsche alles Gute."]
+      }
+    }
+  ],
+
+  // ── Content Type: grammarCorrection ──────────
+  corrections: [
+    { wrong: "das book ist auf/in deutsch", right: "Das Buch ist auf Deutsch.", reason: "'Buch' is neuter (das). Language names are capitalized." },
+    { wrong: "die weissbier is gut", right: "Das Weißbier ist gut.", reason: "'Weißbier' is neuter (das Weißbier), not die. 'is' → 'ist' in German." },
+    { wrong: "Meine frau ist Shanu. Sie arbitet bei Zalando.", right: "Meine Frau ist Shanu. Sie arbeitet bei Zalando.", reason: "All nouns capitalized. 'arbitet' → 'arbeitet' (spelling)." },
+    { wrong: "Er spielt eniem Indein club.", right: "Er spielt in einem indischen Klub.", reason: "'eniem' → 'einem' (Dativ). 'Indein' → 'indischen'. Word order correction." },
+    { wrong: "Am mittag ich esse Hähnchen mit Reis.", right: "Am Mittag esse ich Hähnchen mit Reis.", reason: "Verb must be in position 2. 'Mittag' is capitalized. Verb goes before subject when time expression is first." },
+    { wrong: "Um 18:00 Uhr have ich meinen Deutschkurs.", right: "Um 18:00 Uhr habe ich meinen Deutschkurs.", reason: "'have' is English. German: 'habe'. Verb position 2." },
+    { wrong: "Mit meinem frau und meiner bruder", right: "Mit meiner Frau und meinem Bruder", reason: "Dativ: 'Frau' (f) → 'meiner Frau'. 'Bruder' (m) → 'meinem Bruder'. All nouns capitalized." },
+    { wrong: "Am Sonntang, treffe ich mit meiner schwester im park.", right: "Am Sonntag treffe ich meine Schwester im Park.", reason: "'Sonntang' → 'Sonntag'. No comma needed. 'treffen' + Akkusativ (not mit). 'Schwester', 'Park' capitalized." },
+    { wrong: "Ich besuche meine familie im winter.", right: "Ich besuche meine Familie im Winter.", reason: "All nouns capitalized: 'Familie', 'Winter'." },
+    { wrong: "Wann hat dein lieblingskollege geburtestag?", right: "Wann hat dein Lieblingskollege Geburtstag?", reason: "'Lieblingskollege' and 'Geburtstag' are nouns — always capitalized. Spelling: 'Geburtstag' not 'geburtestag'." }
+  ],
+
+  // ── Content Type: seoMetadata ─────────────────
+  seoMetadata: {
+    sys: { contentType: { sys: { id: "seoMetadata" } }, id: "telcSeo" },
+    fields: {
+      internalName:    "TELC A1 Study Guide SEO",
+      metaTitle:       "TELC Deutsch A1 Study Guide — Ankit Sharma",
+      metaDescription: "Complete TELC A1 German study guide with grammar, vocabulary, writing templates and speaking prompts.",
+      canonicalUrl:    "https://your-vercel-url.vercel.app"
+    }
+  }
+};
+</script>
+
+<!-- SITE HEADER — maps to: examOverview.title, examOverview.targetLevel, examOverview.examProvider -->
+<header class="site-header" data-contentful-content-type="examOverview" data-contentful-entry-id="telcA1Overview">
+  <p class="eyebrow" data-contentful-field-id="examProvider">TELC — Prüfungsvorbereitung</p>
+  <h1 data-contentful-field-id="title">Deutsch A1 — Lernhilfe 🇩🇪</h1>
+  <p class="subtitle">Ankit's complete exam guide. Grammar · Vocabulary · Writing · Speaking</p>
+  <div class="badge-row">
+    <span class="badge accent" data-contentful-field-id="targetLevel">Niveau A1</span>
+    <span class="badge">Sprechen</span>
+    <span class="badge">Schreiben</span>
+    <span class="badge">Hören</span>
+    <span class="badge">Lesen</span>
+  </div>
+</header>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav" role="navigation">
+  <a href="#exam">📋 Exam</a>
+  <a href="#grammar">📐 Grammatik</a>
+  <a href="#vocab">📌 Vokabeln</a>
+  <a href="#speaking">🗣️ Sprechen</a>
+  <a href="#writing">✍️ Schreiben</a>
+  <a href="#corrections">🔧 Korrekturen</a>
+  <a href="#contentmodel">🗂️ Content Model</a>
+</nav>
+
+<main class="container">
+
+  <!-- ═══ EXAM OVERVIEW ═══════════════════════════════ -->
+  <!-- Content Type: examOverview -->
+  <section class="section-group" id="exam" data-contentful-content-type="examOverview">
+    <p class="section-label">Prüfungsübersicht</p>
+    <h2 class="section-title">Exam Overview</h2>
+    <p class="section-desc">Know the exam structure before you sit it. TELC A1 has 4 parts, all equally weighted.</p>
+    <div id="exam-stats" class="grid-4" style="margin-bottom:24px;"></div>
+    <div id="exam-sections" class="grid-2"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ GRAMMAR ══════════════════════════════════════ -->
+  <!-- Content Type: grammarRule -->
+  <section class="section-group" id="grammar" data-contentful-content-type="grammarRule">
+    <p class="section-label">Grammatik</p>
+    <h2 class="section-title">Grammar Rules</h2>
+    <p class="section-desc">Every rule you need for A1, built from your class notes. Tabs organize by category.</p>
+    <div class="tab-bar" id="grammar-tabs"></div>
+    <div id="grammar-panels"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ VOCABULARY ════════════════════════════════════ -->
+  <!-- Content Type: vocabularySet + vocabularyItem -->
+  <section class="section-group" id="vocab" data-contentful-content-type="vocabularySet">
+    <p class="section-label">Vokabular</p>
+    <h2 class="section-title">Vocabulary</h2>
+    <p class="section-desc">Tap any word to reveal an example sentence. Color = article gender.</p>
+    <div class="tip-box"><span class="tip-icon">💡</span><span><strong>Article colors:</strong> <span class="m">Blue = der (m)</span> · <span class="f" style="color:#e91e8c">Pink = die (f)</span> · <span class="n" style="color:var(--orange)">Orange = das (n)</span> · <span class="pl" style="color:var(--gray-3)">Gray = no article</span></span></div>
+    <div class="tab-bar" id="vocab-tabs"></div>
+    <div id="vocab-panels"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ SPEAKING ══════════════════════════════════════ -->
+  <!-- Content Type: speakingPrompt -->
+  <section class="section-group" id="speaking" data-contentful-content-type="speakingPrompt">
+    <p class="section-label">Sprechen</p>
+    <h2 class="section-title">Speaking Prompts</h2>
+    <p class="section-desc">Click each prompt to reveal a model answer based on your personal details. Practice out loud!</p>
+    <div class="tip-box"><span class="tip-icon">🗣️</span><span>TELC Speaking has 3 parts: <strong>Vorstellen</strong> (introduce yourself), <strong>Fragen stellen/beantworten</strong> (ask & answer), <strong>Bitten/reagieren</strong> (make a request). Speak in full sentences, not single words.</span></div>
+    <div id="speaking-cards"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ WRITING ═══════════════════════════════════════ -->
+  <!-- Content Type: writingTemplate -->
+  <section class="section-group" id="writing" data-contentful-content-type="writingTemplate">
+    <p class="section-label">Schreiben</p>
+    <h2 class="section-title">Writing Templates</h2>
+    <p class="section-desc">35 complete letter templates across 7 categories. Filter by type and study the key phrases.</p>
+    <div class="tip-box"><span class="tip-icon">✍️</span><span>TELC Writing: Write approx. <strong>30 words</strong>. Always: Greeting → Body (2–3 sentences) → Closing. Check verb in position 2 every time.</span></div>
+    <div class="writing-filter" id="writing-filters"></div>
+    <div id="writing-cards"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CORRECTIONS ═══════════════════════════════════ -->
+  <!-- Content Type: grammarCorrection -->
+  <section class="section-group" id="corrections" data-contentful-content-type="grammarCorrection">
+    <p class="section-label">Korrekturen</p>
+    <h2 class="section-title">Your Mistakes — Corrected</h2>
+    <p class="section-desc">Every grammar error from your class notes, corrected with an explanation. Learn from these!</p>
+    <div id="correction-cards"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ WRITING CHECKLIST ═════════════════════════════ -->
+  <section class="section-group" id="checklist">
+    <p class="section-label">Vor der Prüfung</p>
+    <h2 class="section-title">Exam Checklist</h2>
+    <p class="section-desc">Check these before submitting any written task.</p>
+    <div class="card">
+      <ul class="checklist">
+        <li>Every sentence has a verb in position 2</li>
+        <li>All nouns are capitalized (das Buch, die Mutter, der Vater)</li>
+        <li>I used the correct article: der (m) / die (f) / das (n)</li>
+        <li>Possessives match the noun gender (mein / meine)</li>
+        <li>Dativ after: mit, bei, nach, seit, von, zu, aus, gegenüber</li>
+        <li>Akkusativ after: durch, für, gegen, ohne, um</li>
+        <li>Separable verb prefix is at the END of the sentence</li>
+        <li>Perfekt: haben/sein in pos. 2 + Partizip II at the END</li>
+        <li>Modal verb in pos. 2 + infinitive at the END</li>
+        <li>Letter has: Greeting · Body (30 words) · Closing + Name</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ═══ CONTENT MODEL DOCUMENTATION ══════════════════ -->
+  <!-- This section documents the Contentful content types used in this page -->
+  <section class="section-group" id="contentmodel">
+    <p class="section-label">Contentful</p>
+    <h2 class="section-title">Content Model</h2>
+    <p class="section-desc">The schema below maps directly to the Contentful content types needed to manage this study guide in the web app. Every content type follows Topics &amp; Assemblies pattern with camelCase field IDs.</p>
+    <div id="content-model-cards"></div>
+  </section>
+
+</main>
+
+<footer>
+  <p>TELC A1 Study Guide · Built for Contentful · Viel Erfolg, Ankit! 🍀</p>
+</footer>
+
+<script>
+// ─── Render Engine ─────────────────────────────────────────────────────────
+// All rendering reads from CONTENTFUL_DATA — no hardcoded content in HTML.
+// When integrated with real Contentful CDA, replace CONTENTFUL_DATA with
+// the result of client.getEntries({ content_type: 'studyPage', ... })
+
+const D = CONTENTFUL_DATA;
+
+// ─── Exam Stats ─────────────────────────────────────────────────────────────
+(function renderExamStats() {
+  const el = document.getElementById('exam-stats');
+  el.innerHTML = D.examOverview.fields.stats.map(s => `
+    <div class="exam-stat-card" data-contentful-field-id="stats">
+      <div class="stat-icon">${s.icon}</div>
+      <div class="stat-value">${s.value}</div>
+      <div class="stat-label">${s.label}</div>
+    </div>`).join('');
+})();
+
+// ─── Exam Sections ───────────────────────────────────────────────────────────
+(function renderExamSections() {
+  const el = document.getElementById('exam-sections');
+  el.innerHTML = D.examSections.map(sec => {
+    const f = sec.fields;
+    const tips = f.tips.map(t => `<li style="font-size:0.82rem;color:var(--gray-2);margin-bottom:4px;">• ${t}</li>`).join('');
+    return `
+    <div class="exam-section-card" data-contentful-content-type="examSection" data-contentful-entry-id="${sec.sys.id}" style="border-left-color:${f.accentColor}">
+      <div class="sec-icon">${f.icon}</div>
+      <div>
+        <h4 data-contentful-field-id="sectionName">${f.sectionName}</h4>
+        <div class="sec-meta" data-contentful-field-id="durationMinutes">⏱ ${f.durationMinutes} min · ${f.maxPoints} points</div>
+        <p data-contentful-field-id="description">${f.description}</p>
+        <ul style="list-style:none;margin-top:10px;">${tips}</ul>
+      </div>
+    </div>`;
+  }).join('');
+})();
+
+// ─── Grammar Tabs + Panels ───────────────────────────────────────────────────
+(function renderGrammar() {
+  const tabBar = document.getElementById('grammar-tabs');
+  const panels = document.getElementById('grammar-panels');
+  const categories = [...new Set(D.grammarRules.map(r => r.fields.category))];
+
+  tabBar.innerHTML = categories.map((cat, i) =>
+    `<button class="tab-btn${i===0?' active':''}" data-target="gtab-${i}">${cat}</button>`
+  ).join('');
+
+  // group rules by category
+  categories.forEach((cat, i) => {
+    const rules = D.grammarRules.filter(r => r.fields.category === cat);
+    const panel = document.createElement('div');
+    panel.className = `tab-panel${i===0?' active':''}`;
+    panel.id = `gtab-${i}`;
+    panel.innerHTML = rules.map(rule => {
+      const f = rule.fields;
+      const tableHTML = f.table ? `
+        <div style="overflow-x:auto;margin:14px 0;">
+        <table class="case-table">
+          <thead><tr>${f.table.headers.map(h=>`<th>${h}</th>`).join('')}</tr></thead>
+          <tbody>${f.table.rows.map(row=>`<tr>${row.map(cell=>`<td>${cell}</td>`).join('')}</tr>`).join('')}</tbody>
+        </table></div>` : '';
+      const examplesHTML = f.examples.map(ex => `
+        <div class="example-row right" data-contentful-field-id="examples">
+          <span class="de">${ex.german}</span>
+          <span class="en">${ex.english}${ex.note ? ` <em style="color:var(--orange)">(${ex.note})</em>` : ''}</span>
+        </div>`).join('');
+      return `
+      <div class="grammar-card" data-contentful-content-type="grammarRule" data-contentful-entry-id="${rule.sys.id}">
+        <h4 data-contentful-field-id="title">${f.title} <span class="tag">${f.level}</span></h4>
+        <p style="font-size:0.85rem;color:var(--gray-2);margin-bottom:12px;" data-contentful-field-id="explanation">${f.explanation}</p>
+        ${tableHTML}
+        <p style="font-size:0.75rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--gray-3);margin-bottom:8px;">Examples</p>
+        ${examplesHTML}
+      </div>`;
+    }).join('');
+    panels.appendChild(panel);
+  });
+
+  tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      panels.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+})();
+
+// ─── Vocabulary Tabs + Panels ─────────────────────────────────────────────────
+(function renderVocab() {
+  const tabBar = document.getElementById('vocab-tabs');
+  const panels = document.getElementById('vocab-panels');
+
+  tabBar.innerHTML = D.vocabularySets.map((vs, i) =>
+    `<button class="tab-btn${i===0?' active':''}" data-target="vtab-${i}">${vs.fields.category}</button>`
+  ).join('');
+
+  D.vocabularySets.forEach((vs, i) => {
+    const f = vs.fields;
+    const panel = document.createElement('div');
+    panel.className = `tab-panel${i===0?' active':''}`;
+    panel.id = `vtab-${i}`;
+    panel.innerHTML = `
+      <div class="vocab-grid" data-contentful-content-type="vocabularySet" data-contentful-entry-id="${vs.sys.id}">
+        ${f.items.map(item => `
+        <div class="vocab-chip" onclick="this.classList.toggle('revealed')" data-contentful-field-id="items">
+          <div class="article ${item.article === '-' ? 'none' : item.article}">${item.article === '-' ? '' : item.article}</div>
+          <div class="word">${item.word}</div>
+          <div class="translation">${item.translation}</div>
+          ${item.example ? `<div class="example-hint">${item.example}</div>` : ''}
+        </div>`).join('')}
+      </div>`;
+    panels.appendChild(panel);
+  });
+
+  tabBar.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      tabBar.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      panels.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.target).classList.add('active');
+    });
+  });
+})();
+
+// ─── Speaking Cards ───────────────────────────────────────────────────────────
+(function renderSpeaking() {
+  const el = document.getElementById('speaking-cards');
+  el.innerHTML = D.speakingPrompts.map(sp => {
+    const f = sp.fields;
+    const keywords = f.keyWords.map(k => `<span class="phrase-tag">${k}</span>`).join('');
+    return `
+    <div class="speaking-card" data-contentful-content-type="speakingPrompt" data-contentful-entry-id="${sp.sys.id}" onclick="this.classList.toggle('open')">
+      <span class="toggle-icon">▼</span>
+      <div class="q-label" data-contentful-field-id="category">${f.category}</div>
+      <div class="question" data-contentful-field-id="question">${f.question}</div>
+      <div class="answer" data-contentful-field-id="sampleAnswer">
+        <p style="margin-bottom:12px;">${f.sampleAnswer}</p>
+        <div class="key-phrases">${keywords}</div>
+      </div>
+    </div>`;
+  }).join('');
+})();
+
+// ─── Writing Cards + Filters ──────────────────────────────────────────────────
+(function renderWriting() {
+  const categories = ['Alle', ...new Set(D.writingTemplates.map(w => w.fields.category))];
+  const filterEl = document.getElementById('writing-filters');
+  const cardsEl  = document.getElementById('writing-cards');
+
+  filterEl.innerHTML = categories.map((cat, i) =>
+    `<button class="filter-btn${i===0?' active':''}" data-cat="${cat}">${cat}</button>`
+  ).join('');
+
+  cardsEl.innerHTML = D.writingTemplates.map(wt => {
+    const f = wt.fields;
+    const keywords = f.keyPhrases.map(k => `<span class="phrase-tag">${k}</span>`).join('');
+    const bodyLines = f.body.split('\n').map(l => `<p>${l}</p>`).join('');
+    return `
+    <div class="writing-card visible" data-category="${f.category}"
+         data-contentful-content-type="writingTemplate" data-contentful-entry-id="${wt.sys.id}">
+      <div class="wc-header">
+        <span class="wc-cat" data-contentful-field-id="category">${f.category}</span>
+        <h4 data-contentful-field-id="title">${f.title}</h4>
+      </div>
+      <div class="letter-body">
+        <p class="greeting" data-contentful-field-id="greeting">${f.greeting}</p>
+        <br>
+        <div data-contentful-field-id="body">${bodyLines}</div>
+        <p class="closing" data-contentful-field-id="closing">${f.closing.replace(/\n/g,'<br>')}</p>
+      </div>
+      <div class="key-phrases" style="margin-top:14px;">${keywords}</div>
+    </div>`;
+  }).join('');
+
+  filterEl.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterEl.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      cardsEl.querySelectorAll('.writing-card').forEach(card => {
+        const show = cat === 'Alle' || card.dataset.category === cat;
+        card.classList.toggle('visible', show);
+      });
+    });
+  });
+})();
+
+// ─── Corrections ─────────────────────────────────────────────────────────────
+(function renderCorrections() {
+  const el = document.getElementById('correction-cards');
+  el.innerHTML = D.corrections.map(c => `
+    <div class="correction-card" data-contentful-content-type="grammarCorrection">
+      <div class="wrong-line" data-contentful-field-id="wrong">✗ ${c.wrong}</div>
+      <div class="right-line" data-contentful-field-id="right">✓ ${c.right}</div>
+      <div class="reason" data-contentful-field-id="reason">💬 ${c.reason}</div>
+    </div>`).join('');
+})();
+
+// ─── Content Model Documentation ─────────────────────────────────────────────
+(function renderContentModel() {
+  const el = document.getElementById('content-model-cards');
+  const schema = [
+    {
+      name: "Study Page", id: "studyPage", type: "Assembly",
+      desc: "Top-level page that composes all content. One entry per study guide.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label visible in Contentful web app only.", req: true },
+        { id: "title", type: "Short Text", help: "Page title shown to users.", req: true },
+        { id: "slug", type: "Short Text", help: "URL path segment. Unique. e.g. telc-a1-study-guide", req: true },
+        { id: "examOverview", type: "Reference → examOverview", help: "Links to the exam overview entry.", req: true },
+        { id: "grammarRules", type: "Array → grammarRule[]", help: "Ordered list of grammar rule entries.", req: false },
+        { id: "vocabularySets", type: "Array → vocabularySet[]", help: "Vocabulary groups by category.", req: false },
+        { id: "writingTemplates", type: "Array → writingTemplate[]", help: "All writing example entries.", req: false },
+        { id: "speakingPrompts", type: "Array → speakingPrompt[]", help: "Speaking question entries.", req: false },
+        { id: "seoMetadata", type: "Reference → seoMetadata", help: "SEO fields (abstract, reusable).", req: false }
+      ]
+    },
+    {
+      name: "Exam Overview", id: "examOverview", type: "Topic",
+      desc: "Describes the exam provider, level, total points and stat cards.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "title", type: "Short Text", help: "Exam name e.g. TELC Deutsch A1", req: true },
+        { id: "targetLevel", type: "Short Text", help: "CEFR level: A1 / A2 / B1...", req: true },
+        { id: "examProvider", type: "Short Text", help: "e.g. TELC, Goethe", req: true },
+        { id: "totalPoints", type: "Integer", help: "Total score possible.", req: false },
+        { id: "passingScore", type: "Integer", help: "Minimum points to pass.", req: false },
+        { id: "stats", type: "JSON Object", help: "Array of stat cards {icon, value, label}.", req: false }
+      ]
+    },
+    {
+      name: "Exam Section", id: "examSection", type: "Topic",
+      desc: "One part of the exam e.g. Hören, Lesen, Sprechen.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "sectionName", type: "Short Text", help: "Display name e.g. Hören", req: true },
+        { id: "icon", type: "Short Text", help: "Emoji icon for visual distinction.", req: false },
+        { id: "durationMinutes", type: "Integer", help: "Duration of this section in minutes.", req: true },
+        { id: "maxPoints", type: "Integer", help: "Maximum score for this section.", req: true },
+        { id: "accentColor", type: "Short Text", help: "Hex color code for the section card.", req: false },
+        { id: "description", type: "Long Text", help: "What the section involves.", req: true },
+        { id: "tips", type: "Array → Short Text[]", help: "Exam tips for this section.", req: false }
+      ]
+    },
+    {
+      name: "Grammar Rule", id: "grammarRule", type: "Topic",
+      desc: "One grammar topic with explanation, table and examples.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "title", type: "Short Text", help: "Rule title shown to user.", req: true },
+        { id: "level", type: "Short Text", help: "CEFR level. Validation: A1, A2, B1, B2", req: true },
+        { id: "category", type: "Short Text", help: "Groups rules into tabs e.g. Verbs, Articles", req: true },
+        { id: "explanation", type: "Long Text", help: "Simple explanation of the rule.", req: true },
+        { id: "table", type: "JSON Object", help: "Conjugation/declension table {headers, rows}.", req: false },
+        { id: "examples", type: "JSON Object", help: "Array of {german, english, note}.", req: false }
+      ]
+    },
+    {
+      name: "Vocabulary Set", id: "vocabularySet", type: "Topic",
+      desc: "A grouped set of vocabulary words by theme e.g. Supermarkt, Familie.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "category", type: "Short Text", help: "Display category name with emoji.", req: true },
+        { id: "level", type: "Short Text", help: "CEFR level.", req: true },
+        { id: "items", type: "Array → vocabularyItem[]", help: "Word entries in this set.", req: true }
+      ]
+    },
+    {
+      name: "Vocabulary Item", id: "vocabularyItem", type: "Topic",
+      desc: "A single German word with article, translation, and example.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "germanWord", type: "Short Text", help: "The German word.", req: true },
+        { id: "article", type: "Short Text", help: "der / die / das / -. Validation: accept only these values.", req: true },
+        { id: "englishTranslation", type: "Short Text", help: "English meaning.", req: true },
+        { id: "pluralForm", type: "Short Text", help: "Plural form if applicable.", req: false },
+        { id: "exampleSentence", type: "Short Text", help: "A short example sentence.", req: false }
+      ]
+    },
+    {
+      name: "Writing Template", id: "writingTemplate", type: "Topic",
+      desc: "A complete letter or email template for a specific scenario.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "title", type: "Short Text", help: "Template title shown to user.", req: true },
+        { id: "category", type: "Short Text", help: "Einladung / Absage / Anfrage / Beschwerde / Mitteilung / Glückwunsch / Beschreibung. Use validation.", req: true },
+        { id: "subject", type: "Short Text", help: "Email subject line.", req: false },
+        { id: "greeting", type: "Short Text", help: "Salutation e.g. Hallo Max,", req: true },
+        { id: "body", type: "Long Text", help: "Main body of the letter.", req: true },
+        { id: "closing", type: "Short Text", help: "Sign-off e.g. Viele Grüße,\\nAnkit", req: true },
+        { id: "keyPhrases", type: "Array → Short Text[]", help: "3–5 key phrases to memorize from this template.", req: false }
+      ]
+    },
+    {
+      name: "Speaking Prompt", id: "speakingPrompt", type: "Topic",
+      desc: "A speaking question with a sample answer and key vocabulary.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "category", type: "Short Text", help: "Exam part e.g. Teil 1 — Vorstellen", req: true },
+        { id: "question", type: "Short Text", help: "The question or prompt the examiner gives.", req: true },
+        { id: "sampleAnswer", type: "Long Text", help: "Full model answer text.", req: true },
+        { id: "keyWords", type: "Array → Short Text[]", help: "Key phrases the answer uses.", req: false }
+      ]
+    },
+    {
+      name: "SEO Metadata", id: "seoMetadata", type: "Topic",
+      desc: "Shared SEO content type — abstract once, reference from any page.",
+      fields: [
+        { id: "internalName", type: "Short Text", help: "Internal label.", req: true },
+        { id: "metaTitle", type: "Short Text", help: "Page title for search engines. Max 60 chars.", req: true },
+        { id: "metaDescription", type: "Long Text", help: "Description for search engines. Max 160 chars.", req: false },
+        { id: "canonicalUrl", type: "Short Text", help: "Canonical URL for this page.", req: false }
+      ]
+    }
+  ];
+
+  el.innerHTML = schema.map(ct => {
+    const typeBadge = ct.type === 'Assembly'
+      ? `style="color:var(--purple)"` : `style="color:var(--green)"`;
+    const fields = ct.fields.map(f => `
+      <div class="field-row">
+        <span class="fn">${f.id}</span>
+        <span class="ft">${f.type}</span>
+        <span class="fh">${f.help}</span>
+        ${f.req ? '<span class="req">REQ</span>' : ''}
+      </div>`).join('');
+    return `
+    <div class="cm-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+        <h4>${ct.name}</h4>
+        <span style="font-size:0.7rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:rgba(255,255,255,0.1);" ${typeBadge}>${ct.type}</span>
+      </div>
+      <div class="cm-id">contentTypeId: "${ct.id}"</div>
+      <p style="font-size:0.82rem;color:rgba(255,255,255,0.5);margin-bottom:14px;">${ct.desc}</p>
+      ${fields}
+    </div>`;
+  }).join('');
+})();
+
+// ─── Nav Active State ─────────────────────────────────────────────────────────
+(function navHighlight() {
+  const sections = document.querySelectorAll('.section-group[id]');
+  const links    = document.querySelectorAll('.sticky-nav a');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`.sticky-nav a[href="#${e.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.3 });
+  sections.forEach(s => obs.observe(s));
+})();
+</script>
+
+<!-- PDF Export Boilerplate -->
+<script>
+  window.GleanBridge.postMessage({
+    actionId: 'export-pdf',
+    type: 'glean-add-menu',
+    metadata: { label: 'Export as PDF', icon: 'export' }
+  });
+  window.GleanBridge.onMessage('action', function(data) {
+    if (data.actionId === 'export-pdf') window.print();
+  });
+</script>
+
+</body>
+</html>
