@@ -1,6 +1,54 @@
-"use client"
-import{useState}from 'react'
-const fb=[{title:'Shopping & Food',words:[{de:'der Lachs',en:'salmon'},{de:'die Butter',en:'butter'},{de:'die Milch',en:'milk'},{de:'das Mehl',en:'flour'},{de:'das Haehnchen',en:'chicken'},{de:'der Reis',en:'rice'},{de:'das Salz',en:'salt'},{de:'die Zwiebel',en:'onion'}]},{title:'Time & Days',words:[{de:'um sieben Uhr',en:'at 7 oclock'},{de:'um halb zwei',en:'at 1:30'},{de:'am Morgen',en:'morning'},{de:'am Mittag',en:'noon'},{de:'am Abend',en:'evening'},{de:'gestern',en:'yesterday'},{de:'danach',en:'afterwards'}]},{title:'Family',words:[{de:'die Mutter',en:'mother'},{de:'der Vater',en:'father'},{de:'die Frau',en:'wife'},{de:'der Mann',en:'husband'},{de:'die Schwester',en:'sister'},{de:'der Bruder',en:'brother'}]},{title:'Home',words:[{de:'putzen',en:'to clean'},{de:'aufraeumen',en:'to tidy up'},{de:'die Kueche',en:'kitchen'},{de:'kochen',en:'to cook'},{de:'einkaufen',en:'to shop'}]},{title:'Work',words:[{de:'arbeiten',en:'to work'},{de:'die Arbeit',en:'work'},{de:'der Kollege',en:'colleague m'},{de:'die Kollegin',en:'colleague f'},{de:'die Pause',en:'break'}]},{title:'Germany',words:[{de:'die Autobahn',en:'motorway'},{de:'der Berg',en:'mountain'},{de:'die Zugspitze',en:'highest peak'},{de:'Muenchen',en:'Munich'}]}]
-export default function VocabSection({data}:{data?:any[]}){const sets=(data&&data.length>0)?data.map((d:any)=>d.fields):fb;const[revealed,setRevealed]=useState<Record<string,boolean>>({})
-const toggle=(key:string)=>setRevealed(r=>({...r,[key]:!r[key]}))
-return(<section id="vocab" className="max-w-6xl mx-auto px-6 py-16 section-fade"><h2 className="text-3xl font-bold mb-2">Vocabulary</h2><p className="text-gray-500 mb-8">Tap a word to reveal its meaning</p><div className="space-y-8">{sets.map((set:any,si:number)=>(<div key={si}><h3 className="text-lg font-semibold text-gray-800 mb-3">{set.title}</h3><div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">{(set.words||[]).map((w:any,wi:number)=>{const key=`${si}-${wi}`;return(<button key={key} onClick={()=>toggle(key)} className="bg-white border border-gray-200 rounded-xl px-3 py-3 text-left hover:border-blue-400 hover:bg-blue-50 transition text-sm"><p className="font-semibold text-gray-800">{w.de}</p>{revealed[key]?<p className="text-blue-600 mt-1">{w.en}</p>:<p className="text-gray-300 mt-1">tap</p>}</button>)})}</div></div>))}</div></section>)}
+'use client'
+import { useState } from 'react'
+
+const fallback = [
+  { fields: { title: 'Shopping', words: [
+    {fields:{de:'der Lachs',en:'salmon'}},{fields:{de:'die Butter',en:'butter'}},
+    {fields:{de:'die Milch',en:'milk'}},{fields:{de:'der Reis',en:'rice'}},
+  ]}},
+  { fields: { title: 'Family', words: [
+    {fields:{de:'die Mutter',en:'mother'}},{fields:{de:'der Vater',en:'father'}},
+    {fields:{de:'die Schwester',en:'sister'}},{fields:{de:'der Bruder',en:'brother'}},
+  ]}},
+]
+
+export default function VocabSection({ data }: { data?: any[] }) {
+  const sets = (data && data.length > 0) ? data : fallback
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({})
+  const toggle = (key: string) => setRevealed(r => ({ ...r, [key]: !r[key] }))
+
+  return (
+    <section id="vocab" className="max-w-6xl mx-auto px-6 py-16 section-fade">
+      <h2 className="text-3xl font-bold mb-2 text-gray-900">Vocabulary</h2>
+      <p className="text-gray-500 mb-8">Tap a word to reveal its meaning</p>
+      <div className="space-y-8">
+        {sets.map((set: any, si: number) => {
+          const title = set?.fields?.title || set?.title || 'Set '+(si+1)
+          const words = set?.fields?.words || set?.words || []
+          return (
+            <div key={si}>
+              <h3 className="text-lg font-semibold text-gray-800 mb-3">{title}</h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
+                {words.map((w: any, wi: number) => {
+                  const key = si+'-'+wi
+                  const de = w?.fields?.de || w?.de || ''
+                  const en = w?.fields?.en || w?.en || ''
+                  if (!de) return null
+                  return (
+                    <button key={key} onClick={() => toggle(key)}
+                      className="bg-white border border-gray-200 rounded-xl px-3 py-3 text-left hover:border-blue-400 hover:bg-blue-50 transition text-sm">
+                      <p className="font-semibold text-gray-800">{de}</p>
+                      {revealed[key]
+                        ? <p className="text-blue-600 mt-1">{en}</p>
+                        : <p className="text-gray-300 mt-1">tap to reveal</p>}
+                    </button>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+    </section>
+  )
+}
