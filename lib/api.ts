@@ -46,3 +46,16 @@ export async function getStudyPage(preview = false) {
     return r.items[0] || null
   } catch { return null }
 }
+
+export async function getNavigationMenu(preview = false) {
+  try {
+    const c = getClient(preview)
+    if (!c) return null
+    const r = await c.getEntries({
+      content_type: 'navigationMenu',
+      include: 2,
+      limit: 1,
+    } as any)
+    return r.items[0] || null
+  } catch { return null }
+}
