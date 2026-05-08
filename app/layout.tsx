@@ -4,7 +4,7 @@ import './globals.css'
 import Navbar from '@/components/ui/Navbar'
 import Footer from '@/components/ui/Footer'
 import { getNavigationMenu } from '@/lib/api'
-import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react'
+import PreviewProvider from '@/components/ContentfulPreviewProvider'
 
 export const metadata: Metadata = {
   title: 'TELC A1 Deutsch - Study Guide',
@@ -31,15 +31,11 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="de">
       <body className="bg-gray-50 text-gray-900 antialiased">
-        <ContentfulLivePreviewProvider
-          locale="en-US"
-          enableInspectorMode={true}
-          enableLiveUpdates={true}
-        >
+        <PreviewProvider>
           <Navbar siteName={siteName} links={navLinks} />
           <main>{children}</main>
           <Footer text={footerText} links={footerLinks} />
-        </ContentfulLivePreviewProvider>
+        </PreviewProvider>
       </body>
     </html>
   )
