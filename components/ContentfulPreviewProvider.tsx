@@ -1,13 +1,17 @@
-
 'use client'
 import { ContentfulLivePreviewProvider } from '@contentful/live-preview/react'
+import { PropsWithChildren } from 'react'
 
-export default function PreviewProvider({ children }: { children: React.ReactNode }) {
+export default function PreviewProvider({
+  children,
+  isDraftMode = false,
+}: PropsWithChildren<{ isDraftMode?: boolean }>) {
   return (
     <ContentfulLivePreviewProvider
       locale="en-US"
-      enableInspectorMode={true}
-      enableLiveUpdates={true}
+      enableInspectorMode={isDraftMode}
+      enableLiveUpdates={isDraftMode}
+      debugMode={isDraftMode}
     >
       {children}
     </ContentfulLivePreviewProvider>

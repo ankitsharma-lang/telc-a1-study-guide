@@ -5,6 +5,7 @@ import Navbar from '@/components/ui/Navbar'
 import Footer from '@/components/ui/Footer'
 import { getNavigationMenu } from '@/lib/api'
 import PreviewProvider from '@/components/ContentfulPreviewProvider'
+import { draftMode } from 'next/headers'
 
 export const metadata: Metadata = {
   title: 'TELC A1 Deutsch - Study Guide',
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const { isEnabled: isDraftMode } = await draftMode()
   const nav = await getNavigationMenu()
   const fields = nav?.fields as any
 
@@ -31,7 +33,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="de">
       <body className="bg-gray-50 text-gray-900 antialiased">
-        <PreviewProvider>
+        <PreviewProvider isDraftMode={isDraftMode}>
+          {isDraftMode && (
+            <div className="bg-yellow-400 text-yellow-900 text-center py-2 text-sm font-semibold sticky top-0 z-50">
+              Preview Mode — showing draft content.{' '}
+              <a href="/api/disable-draft" className="underline font-bold">Exit Preview</a>
+            </div>
+          )}
           <Navbar siteName={siteName} links={navLinks} />
           <main>{children}</main>
           <Footer text={footerText} links={footerLinks} />

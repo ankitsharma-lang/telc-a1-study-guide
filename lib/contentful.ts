@@ -1,3 +1,4 @@
+
 import { createClient } from 'contentful'
 
 const spaceId = process.env.CONTENTFUL_SPACE_ID || ''
@@ -9,7 +10,12 @@ export const client = spaceId && accessToken
   : null
 
 export const previewClient = spaceId && previewToken
-  ? createClient({ space: spaceId, accessToken: previewToken, host: 'preview.contentful.com' })
+  ? createClient({
+      space: spaceId,
+      accessToken: previewToken,
+      host: 'preview.contentful.com',
+      alphaFeatures: { includeContentSourceMaps: true },
+    } as any)
   : null
 
 export function getClient(preview = false) {
