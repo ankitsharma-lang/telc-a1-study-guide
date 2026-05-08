@@ -1,5 +1,6 @@
 
 import { getStudyPage, getGrammarRules, getVocabSets, getWritingTemplates, getSpeakingPrompts, getExamOverview } from '@/lib/api'
+import { draftMode } from 'next/headers'
 import GrammarSection from '@/components/sections/GrammarSection'
 import VocabSection from '@/components/sections/VocabSection'
 import SpeakingSection from '@/components/sections/SpeakingSection'
@@ -10,13 +11,15 @@ import React from 'react'
 export const revalidate = 60
 
 export default async function HomePage() {
+  const { isEnabled: preview } = await draftMode()
+
   const [page, examData, grammarData, vocabData, speakingData, writingData] = await Promise.all([
-    getStudyPage(),
-    getExamOverview(),
-    getGrammarRules(),
-    getVocabSets(),
-    getSpeakingPrompts(),
-    getWritingTemplates(),
+    getStudyPage(preview),
+    getExamOverview(preview),
+    getGrammarRules(preview),
+    getVocabSets(preview),
+    getSpeakingPrompts(preview),
+    getWritingTemplates(preview),
   ])
 
   const siteConfig = (page?.fields?.siteConfig as any)?.fields
@@ -24,8 +27,6 @@ export default async function HomePage() {
   const heroTitle = siteConfig?.heroTitle || 'A1 Study Guide'
   const heroSubtitle = siteConfig?.heroSubtitle || 'Grammar · Vocabulary · Speaking · Writing — everything you need to pass.'
 
-  // studyPage sections control ORDER and VISIBILITY only
-  // Actual content always comes from direct API calls (fully resolved)
   const sections: any[] = (page?.fields?.sections as any[]) || []
   const sectionOrder = sections.map((s: any) => s?.sys?.contentType?.sys?.id)
 
@@ -62,6 +63,11 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+      {preview && (
+        <div className="bg-yellow-400 text-yellow-900 text-center py-2 text-sm font-semibold">
+          Preview Mode active — showing draft content
+        </div>
+      )}
       {renderedSections}
     </>
   )
